@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Microsoft Copilot</title>
+  <script src="qr.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #fff8ec;
+      color: #1b1b1b;
+      text-align: center;
+      padding: 2rem 1rem;
+      box-sizing: border-box;
+      background-image: url(background.jpg);
+      background-size: cover;
+      background-position: bottom;
+      height:100vh;
+      background-attachment: fixed;
+      max-width:768px;
+      margin:0 auto;
+    }
+.logo {
+      width: 100%;
+text-align: left;    }
+    .logo img {
+      height: 26px;
+      margin-bottom: 1rem;
+    }
+
+    .copilot-icon {
+      width: 80%;
+margin-right:10px    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .subtitle {
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      color: #333;
+      font-weight: 100;
+    }
+
+    .highlight {
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin: 2rem auto 1rem;
+      max-width: 500px;
+    }
+
+    .highlight span {
+      margin-left: 0.3rem;
+    }
+
+    .download-btn {
+  margin-top: 1rem;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(to right, #00c6ff, #55e860);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 5px #35a843;
+  cursor: pointer;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Pulse animatie */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+    .phone-frame {
+      background: #fff;
+      border-radius: 32px;
+      max-width: 300px;
+      aspect-ratio: 9/16;
+      margin: 3rem auto 0;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      padding: 1rem 0;
+      position: relative;
+      border:6px solid #000;
+    }
+
+    .phone-status-bar {
+      display: none;
+      justify-content: space-between;
+      padding: 0 1rem;
+      font-size: 0.8rem;
+      color: #444;
+      margin-bottom: 0.5rem;
+    }
+
+    .chat-box {
+      background-color: transparent;
+      padding: 0 1rem 1rem;
+      /* max-height: 400px;
+      overflow-y: auto; */
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .message {
+      background-color: #fafafa;
+      padding: 1rem 1.2rem;
+      border-radius: 16px;
+      text-align: left;
+      font-size: 1rem;
+      align-self: flex-start;
+      max-width: 90%;
+      margin-left: -40px;
+    }
+
+    .message.user {
+      background-color: #ffe3d3;
+      font-weight: 500;
+      align-self: flex-end;
+      margin-right: -40px;
+
+    }
+
+    .phone-notch {
+      width: 140px;
+      height: 30px;
+      background: #414141;
+      border-radius: 15px;
+      margin: 0 auto 2rem;
+    }
+
+    /* Optional scrollbar styling for nicer mobile feel */
+    .chat-box::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .chat-box::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 3px;
+    }
+    .show{
+        display: block !important;
+    }
+    .showpop{
+        display: flex !important;
+    }
+    .screen1, .screen2, .screen3 {
+      display: none;
+    }
+    #qrcode{
+margin:0px auto;
+width:240px;
+height:240px;
+border-radius: 20px;
+box-sizing: border-box;
+  background-color: #fffa;
+  backdrop-filter: blur(3px);
+  padding:20px;
+
+    }
+    #qrcode img {
+      width: 200px;
+      height: 200px;
+      mix-blend-mode: multiply;
+
+    }
+
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img src="microsoft.svg" alt="Microsoft Logo">
+  </div>
+  <img class="copilot-icon" src="copilot1.svg" alt="Copilot Icon">
+  <p class="subtitle">In your corner. By your side. With the Copilot app for iOS and Android, you’ve got this.</p>
+  <div class="screen1">
+  <p class="highlight">Simply tap below to take the first step into something amazing.</p>
+  <button class="download-btn" onclick="document.querySelector('.pop').classList.add('showpop')">Download</button>
+
+  <div class="phone-frame">
+    <div class="phone-notch"></div>
+   
+    <div class="chat-box">
+      <div class="message user">Is making a career change at 35 a bad idea?</div>
+      <div class="message">Not at all! Career changes at 35 can be super invigorating. You’ve got experience, a better sense of what you want, and still plenty of time to shine in a new field. Loads of folks do it and find new purpose and passion.</div>
+      <div class="message user">I want to be more creative. Feeling stuck in my current job.</div>
+      <div class="message">I get it. Feeling stuck can be rough. Shifting to a more creative role could be just the refresh you need. What kind of creativity are you passionate about – writing, design, music, art or something else? The possibilities are endless.</div>
+      <div class="message user">Definitely into music and design, I also cross stitch for fun 😌</div>
+    </div>
+  </div>
+</div>
+<div class="screen2">
+    <p class="highlight">Please confirm that you've downloaded the app by clicking the button below.</p>
+    <p class="">Once you're ready, let's move to the next step and unlock the magic!</p>
+    <p class="">Hit 'Confirm' to continue!</p>
+    <button class="download-btn" onclick="generateUniqueCode();document.querySelector('.screen2').classList.remove('show');document.querySelector('.screen3').classList.add('show');">Confirm</button>
+  
+   
+  </div>
+  <div class="screen3">
+    <p class="highlight">You're One Step Away!</p>
+    <p class="">Find your  promo QR code below.</p>
+    <p class="">Scan the QR code with the vending machine screen, then select your goodie on the vending machine and take it out.</p>
+    <p class="">Enjoy the goodie, it's all yours!</p>
+    <div id="qrcode"></div>
+   
+  </div>
+  <div class="pop" style="background: rgba(0,0,0,0.4); backdrop-filter: blur(3px); position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: none; flex-direction: column; justify-content: center; align-items: center;">
+    <div style="background: #fffa; backdrop-filter: blur(20px); padding: 2rem; padding-top: 1rem; margin: 2rem; border-radius: 20px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
+      <h2>You're Almost There!</h2>
+      <p>After downloading the app, don’t forget to come back to this page to claim your reward!</p>
+      <button class="download-btn" onclick="simulateInstall()">OK</button>
+    </div>
+  </div>
+  
+  </div>
+  <script>
+   document.addEventListener("DOMContentLoaded", function () {
+    const appInstalled = localStorage.getItem('appInstalled');
+    if (appInstalled) {
+      document.querySelector('.screen2').classList.add('show');
+    } else {
+      document.querySelector('.screen1').classList.add('show');
+    }
+  });
+  function generateUniqueCode() {
+      const timestamp = Date.now();
+      const salt = Math.random().toString(36).substring(2, 10); // 8-char random string
+      return `${timestamp}-${salt}`;
+    }
+
+    // Check localStorage
+    let code = localStorage.getItem("uniqueQRCode");
+
+    if (!code) {
+      code = generateUniqueCode();
+      localStorage.setItem("uniqueQRCode", code);
+    }
+
+    // Toon de code in tekst
+    // document.getElementById("codeValue").textContent = code;
+
+    // Genereer QR-code
+    new QRCode(document.getElementById("qrcode"), {
+      text: code,
+      width: 200,
+      height: 200,
+    });
+     function simulateInstall() {
+        var appStoreLink = 'https://app.adjust.com/1c87q4wj';
+            window.location.href = appStoreLink;
+      localStorage.setItem('appInstalled', 'true');
+    }
+  </script>
+</body>
+</html>
