@@ -205,8 +205,8 @@ box-sizing: border-box;
     <p class="highlight">Please confirm that you've downloaded the app by clicking the button below.</p>
     <p class="">Once you're ready, let's move to the next step and unlock the magic!</p>
     <p class="">Hit 'Confirm' to continue!</p>
-    <button class="download-btn" onclick="generateUniqueCode();document.querySelector('.screen2').classList.remove('show');document.querySelector('.screen3').classList.add('show');">Confirm</button>
-  
+<!--     <button class="download-btn" onclick="generateUniqueCode();document.querySelector('.screen2').classList.remove('show');document.querySelector('.screen3').classList.add('show');">Confirm</button>-->
+  <button class="download-btn" onclick="document.querySelector('.screen2').classList.remove('show');document.querySelector('.screen3').classList.add('show');showQrFromSupabase();">Confirm</button> 
    
   </div>
   <div class="screen3">
@@ -264,5 +264,66 @@ box-sizing: border-box;
       localStorage.setItem('appInstalled', 'true');
     }
   </script>
+  <script>
+const SUPABASE_URL = 'https://rqoxrkzlgoegpuiolzxc.supabase.co'; // vervang dit
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJxb3hya3psZ29lZ3B1aW9senhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkxNTc2MTksImV4cCI6MjA2NDczMzYxOX0.PYO4m7QKPXaq9aT4OIDtVHd-uyL1vfDt386cJSiitmY'; // vervang met je anon key
+
+async function fetchCode() {
+  let code = localStorage.getItem('uniqueCode');
+  if (code) return code;
+
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/codes?used=eq.false&limit=1`, {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+      'Content-Type': 'application/json',
+      Prefer: 'return=representation',
+    }
+  });
+
+  const data = await res.json();
+  if (!data.length) {
+    alert("Er zijn geen codes meer beschikbaar.");
+    return;
+  }
+
+  code = data[0].code;
+
+  // Markeer als gebruikt
+  await fetch(`${SUPABASE_URL}/rest/v1/codes?code=eq.${code}`, {
+    method: 'PATCH',
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ used: true })
+  });
+
+  localStorage.setItem('uniqueCode', code);
+  return code;
+}
+
+// Voorbeeld: maak QR zodra je de code hebt
+fetchCode().then(code => {
+  new QRCode(document.getElementById("qrcode"), {
+    text: code,
+    width: 200,
+    height: 200
+  });
+});
+
+function showQrFromSupabase() {
+  fetchCode().then(code => {
+    document.getElementById("qrcode").innerHTML = ""; // QR-code opnieuw renderen
+    new QRCode(document.getElementById("qrcode"), {
+      text: code,
+      width: 200,
+      height: 200
+    });
+  });
+}
+</script>
+  
 </body>
 </html>
